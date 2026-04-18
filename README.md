@@ -1,25 +1,37 @@
-﻿# Smart Study Planner with AI Suggestions
+﻿# Smart Study Planner (Version 1 - Console Application)
 
-## 📌 Project Overview
-This is a Java-based application that helps students plan and optimize their study schedule based on subjects, topics, and exam deadlines.
+## 📌 Overview
+
+This is the initial version of the Smart Study Planner built using Java.
+It is a console-based application that allows users to manage subjects, topics, and generate study plans.
 
 ## 🚀 Features
-- Add subjects and topics
-- Generate study schedule based on priority
-- Track study progress
-- AI-based suggestions for improvement
+
+* Add Subjects
+* Add Topics
+* Generate Study Plan
+* Track Progress
+* AI-based Study Suggestions (basic logic)
 
 ## 🛠️ Tech Stack
-- Java (OOP concepts)
-- File Handling / Data Storage
-- Collections Framework
+
+* Java (Core)
+* File Handling for Data Storage
+
+## 📊 Version Info
+
+* Version 1: Console-based implementation (this repository)
+* Version 2: JavaFX GUI version (coming soon / separate repository)
 
 ## ▶️ How to Run
-1. Clone the repository
-2. Open in any Java IDE
-3. Compile and run Main.java
 
-## 📈 Future Enhancements
-- JavaFX GUI
-- Real AI API integration
-- Performance analytics dashboard
+1. Compile:
+   javac Main.java
+
+2. Run:
+   java Main
+
+## 📌 Note
+
+This version demonstrates core logic and backend functionality.
+A GUI-based advanced version is developed separately.
