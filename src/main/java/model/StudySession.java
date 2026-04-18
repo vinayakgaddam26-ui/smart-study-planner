@@ -1,15 +1,16 @@
-package models;
+package model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class StudySession {
-    // Encapsulation: fields are private
+public class StudySession implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private LocalDate date;
     private Topic topic;
     private int durationMinutes;
     private boolean isCompleted;
 
-    // Constructor to initialize a StudySession object
     public StudySession(LocalDate date, Topic topic, int durationMinutes, boolean isCompleted) {
         this.date = date;
         this.topic = topic;
@@ -17,7 +18,6 @@ public class StudySession {
         this.isCompleted = isCompleted;
     }
 
-    // Getters and Setters
     public LocalDate getDate() {
         return date;
     }

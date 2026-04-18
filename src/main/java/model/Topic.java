@@ -1,13 +1,15 @@
-package models;
+package model;
 
-public class Topic {
-    // Encapsulation: fields are private
+import java.io.Serializable;
+
+public class Topic implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     private String name;
     private Subject subject;
     private String status;
     private String priority;
 
-    // Constructor to initialize a Topic object
     public Topic(String name, Subject subject, String status, String priority) {
         this.name = name;
         this.subject = subject;
@@ -15,7 +17,6 @@ public class Topic {
         this.priority = priority;
     }
 
-    // Getters and Setters
     public String getName() {
         return name;
     }

@@ -1,7 +1,7 @@
-package logic;
+package service;
 
-import models.StudySession;
-import models.Subject;
+import model.StudySession;
+import model.Subject;
 import storage.DataStorage;
 
 import java.time.LocalDate;
@@ -16,10 +16,6 @@ public class AISuggestionEngine {
         this.dataStorage = dataStorage;
     }
 
-    /**
-     * Recommends actions based on hard-coded heuristics (rules).
-     * Simulates an AI system before integrating a real API.
-     */
     public List<String> generateSuggestions() {
         List<String> suggestions = new ArrayList<>();
 
@@ -34,10 +30,6 @@ public class AISuggestionEngine {
         return suggestions;
     }
 
-    /**
-     * Rule 1: Checks for Missed Study Sessions.
-     * Logic: Any session scheduled before today that is NOT marked as completed is a "missed" session.
-     */
     private void analyzeMissedSessions(List<String> suggestions) {
         LocalDate today = LocalDate.now();
         int missedCount = 0;
@@ -59,10 +51,6 @@ public class AISuggestionEngine {
         }
     }
 
-    /**
-     * Rule 2: Checks for Weak / Difficult Subjects.
-     * Logic: Suggests spending more time on subjects with 'Hard' or 'High' difficulty.
-     */
     private void analyzeWeakSubjects(List<String> suggestions) {
         for (Subject subject : dataStorage.getSubjects()) {
             String difficulty = subject.getDifficultyLevel();
@@ -75,17 +63,12 @@ public class AISuggestionEngine {
         }
     }
 
-    /**
-     * Rule 3: Checks for Low Completion Rates.
-     * Logic: Calculates the completion rate for each subject. Suggests urgent attention if it falls below 40%.
-     */
     private void analyzeLowCompletionRates(List<String> suggestions) {
         for (Subject subject : dataStorage.getSubjects()) {
             double completionRate = dataStorage.getCompletionPercentage(subject);
             
-            // Only warn if they haven't completed at least 40%
-            if (completionRate < 40.0) {
-                // Formatting to 1 decimal place
+            // Only trigger alert if completion is poor, but do it safely logic-wise
+            if (completionRate < 40.0 && dataStorage.getTopics().stream().anyMatch(t -> t.getSubject().equals(subject))) {
                 String formattedRate = String.format("%.1f", completionRate);
                 suggestions.add("Low completion alert! You have only completed " + formattedRate + 
                         "% of the topics in '" + subject.getName() + "'. Consider dedicating more daily hours to it.");
